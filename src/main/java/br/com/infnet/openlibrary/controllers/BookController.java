@@ -22,8 +22,7 @@ public class BookController {
 
     @GetMapping("/{ISBN}")
     public Book getByISBN(@PathVariable long ISBN) {
-        Book searchedBook = bookServices.findBookByISBN(ISBN);
-        return searchedBook;
+        return bookServices.findBookByISBN(ISBN);
     }
 
     @GetMapping("/list")
@@ -32,9 +31,9 @@ public class BookController {
         List<Book> books = bookServices.listAllBooks();
 
         if (author.isPresent()) {
-            return books = bookServices.findBooksByAuthor(author.get());
+            return bookServices.findBooksByAuthor(author.get());
         } else {
-            return books = books.subList(0, size);
+            return books.subList(0, size);
         }
     }
 
