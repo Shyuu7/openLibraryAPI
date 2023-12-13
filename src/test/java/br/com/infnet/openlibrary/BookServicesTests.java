@@ -7,9 +7,6 @@ import lombok.extern.java.Log;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,14 +14,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest
 @Log
 public class BookServicesTests {
-    private static Logger LOGGER = LoggerFactory.getLogger(BookServicesTests.class);
 
     @Test
     @DisplayName("Pegando livro pelo ISBN")
     public void getBookByISBN() {
         BookServices bookServices = new BookServices();
         Book searchedBook = bookServices.findBookByISBN(9798631156395L);
-        LOGGER.info(searchedBook.getTitle());
+        log.info(searchedBook.getTitle());
         assertEquals("Those Who Wait", searchedBook.getTitle());
     }
 
@@ -33,7 +29,7 @@ public class BookServicesTests {
     public void getGenres() {
         List<String> genres = Arrays.asList("Comics", "HQ", "Toons");
         Book newBook = new Book(1234567891235L, "Spider-Man beats Venom", "Peter Parker", genres);
-        LOGGER.info(String.valueOf(newBook.getGenres()));
+        log.info(String.valueOf(newBook.getGenres()));
         assertEquals(genres, newBook.getGenres());
     }
 
@@ -44,7 +40,7 @@ public class BookServicesTests {
         List<String> genres = Arrays.asList("Historical", "Police", "Mystery");
         Book newBook = new Book(1234567891235L, "Spider-Man beats Venom", "Peter Parker", genres);
         bookServices.updateBook(9798631156395L, newBook);
-        LOGGER.info(newBook.getTitle());
+        log.info(newBook.getTitle());
         assertEquals("Spider-Man beats Venom", newBook.getTitle());
         assertEquals("Peter Parker", newBook.getAuthor());
     }

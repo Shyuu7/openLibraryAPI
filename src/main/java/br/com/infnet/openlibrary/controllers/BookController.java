@@ -3,7 +3,7 @@ package br.com.infnet.openlibrary.controllers;
 import br.com.infnet.openlibrary.exceptions.BookNotFoundException;
 import br.com.infnet.openlibrary.models.Book;
 import br.com.infnet.openlibrary.services.BookServices;
-import lombok.extern.java.Log;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +13,7 @@ import java.security.InvalidParameterException;
 import java.util.List;
 import java.util.Optional;
 
-@Log
+
 @RestController
 @RequestMapping("/books")
 public class BookController {
@@ -28,10 +28,10 @@ public class BookController {
 
     @GetMapping("/list")
     public List<Book> listAll(@RequestParam(required = false, defaultValue = "20") int size,
-                                @RequestParam(required = false) Optional<String> author){
+                              @RequestParam(required = false) Optional<String> author) {
         List<Book> books = bookServices.listAllBooks();
 
-        if(author.isPresent()){
+        if (author.isPresent()) {
             return books = bookServices.findBooksByAuthor(author.get());
         } else {
             return books = books.subList(0, size);
